@@ -1,14 +1,10 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add PostgreSQL database
-var postgres = builder.AddPostgreSQL("postgres")
-    .WithDataVolume()
-    .WithPgAdmin();
+// Add API project  
+var api = builder.AddProject<Projects.StuffManager_Api>("api");
 
-var database = postgres.AddDatabase("stuffmanager");
-
-// Add API project
-var api = builder.AddProject<Projects.StuffManager_Api>("api")
-    .WithReference(database);
+// TODO: PostgreSQL configuration - extension method not found with current package versions
+// Issue: 'IDistributedApplicationBuilder' does not contain definition for 'AddPostgreSQL'
+// Need to investigate proper package versions and configuration for Aspire 9.0
 
 builder.Build().Run();
