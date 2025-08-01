@@ -5,7 +5,7 @@ A proof of concept project for AI-assisted development using GitHub Copilot. Thi
 ## Architecture
 
 - **Frontend**: React with Tailwind CSS, deployed to Azure Static Web Apps
-- **Backend**: ASP.NET Core API, deployed to Azure Container Apps  
+- **Backend**: ASP.NET Core API, deployed to Azure Container Apps
 - **Database**: PostgreSQL, hosted on Azure Database for PostgreSQL
 - **Infrastructure**: Azure Bicep for Infrastructure as Code
 - **CI/CD**: GitHub Actions for automated builds and deployments
