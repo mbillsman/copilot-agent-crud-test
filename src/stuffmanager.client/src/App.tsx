@@ -1,6 +1,6 @@
-import { Provider } from 'react-redux';
-import { store } from './store';
-import StuffList from './components/StuffList';
+import { Provider } from "react-redux";
+import { store } from "./store";
+import StuffList from "./components/StuffList";
 
 function App() {
   return (

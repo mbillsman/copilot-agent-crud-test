@@ -1,32 +1,29 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { Stuff, ApiError } from '../../types';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import type { Stuff, ApiError } from "../../types";
 
 // Async thunk for fetching stuff
 export const fetchStuff = createAsyncThunk<
   Stuff[],
   { page?: number },
   { rejectValue: ApiError }
->(
-  'stuff/fetchStuff',
-  async ({ page = 1 }, { rejectWithValue }) => {
-    try {
-      const response = await fetch(`/stuff?page=${page}`);
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData);
-      }
-      
-      const data = await response.json();
-      return data;
-    } catch {
-      return rejectWithValue({
-        code: 'NETWORK_ERROR',
-        message: 'Failed to fetch stuff items'
-      });
+>("stuff/fetchStuff", async ({ page = 1 }, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`/stuff?page=${page}`);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      return rejectWithValue(errorData);
     }
+
+    const data = await response.json();
+    return data;
+  } catch {
+    return rejectWithValue({
+      code: "NETWORK_ERROR",
+      message: "Failed to fetch stuff items",
+    });
   }
-);
+});
 
 interface StuffState {
   items: Stuff[];
@@ -43,7 +40,7 @@ const initialState: StuffState = {
 };
 
 const stuffSlice = createSlice({
-  name: 'stuff',
+  name: "stuff",
   initialState,
   reducers: {
     setCurrentPage: (state, action) => {
@@ -65,7 +62,7 @@ const stuffSlice = createSlice({
       })
       .addCase(fetchStuff.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to fetch stuff';
+        state.error = action.payload?.message || "Failed to fetch stuff";
       });
   },
 });
@@ -73,9 +70,12 @@ const stuffSlice = createSlice({
 export const { setCurrentPage, clearError } = stuffSlice.actions;
 
 // Selectors
-export const selectStuffItems = (state: { stuff: StuffState }) => state.stuff.items;
-export const selectCurrentPage = (state: { stuff: StuffState }) => state.stuff.currentPage;
-export const selectLoading = (state: { stuff: StuffState }) => state.stuff.loading;
+export const selectStuffItems = (state: { stuff: StuffState }) =>
+  state.stuff.items;
+export const selectCurrentPage = (state: { stuff: StuffState }) =>
+  state.stuff.currentPage;
+export const selectLoading = (state: { stuff: StuffState }) =>
+  state.stuff.loading;
 export const selectError = (state: { stuff: StuffState }) => state.stuff.error;
 
 export default stuffSlice.reducer;

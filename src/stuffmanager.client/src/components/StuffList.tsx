@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { 
-  fetchStuff, 
-  setCurrentPage, 
-  selectStuffItems, 
-  selectCurrentPage, 
-  selectLoading, 
-  selectError 
-} from '../store/slices/stuffSlice';
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import {
+  fetchStuff,
+  setCurrentPage,
+  selectStuffItems,
+  selectCurrentPage,
+  selectLoading,
+  selectError,
+} from "../store/slices/stuffSlice";
 
 export default function StuffList() {
   const dispatch = useAppDispatch();
@@ -40,9 +40,9 @@ export default function StuffList() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div 
-          className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500" 
-          role="status" 
+        <div
+          className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"
+          role="status"
           aria-label="Loading..."
         >
           <span className="sr-only">Loading...</span>
@@ -54,7 +54,10 @@ export default function StuffList() {
   if (error) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+          role="alert"
+        >
           <strong className="font-bold">Error!</strong>
           <span className="block sm:inline"> {error}</span>
         </div>
@@ -74,7 +77,7 @@ export default function StuffList() {
           <h2 className="text-lg leading-6 font-medium text-gray-900 mb-4">
             Stuff List
           </h2>
-          
+
           {items.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-gray-500">No stuff items found.</p>
@@ -85,20 +88,20 @@ export default function StuffList() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th 
-                        scope="col" 
+                      <th
+                        scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         ID
                       </th>
-                      <th 
-                        scope="col" 
+                      <th
+                        scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Name
                       </th>
-                      <th 
-                        scope="col" 
+                      <th
+                        scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Description
@@ -151,30 +154,51 @@ export default function StuffList() {
                     </p>
                   </div>
                   <div>
-                    <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                    <nav
+                      className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                      aria-label="Pagination"
+                    >
                       <button
                         onClick={handlePreviousPage}
                         disabled={currentPage === 1}
                         className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span className="sr-only">Previous</span>
-                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+                        <svg
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </button>
-                      
+
                       <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
                         {currentPage}
                       </span>
-                      
+
                       <button
                         onClick={handleNextPage}
                         disabled={items.length < 10}
                         className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span className="sr-only">Next</span>
-                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                        <svg
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </button>
                     </nav>
