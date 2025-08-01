@@ -40,7 +40,13 @@ export default function StuffList() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
+        <div 
+          className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500" 
+          role="status" 
+          aria-label="Loading..."
+        >
+          <span className="sr-only">Loading...</span>
+        </div>
       </div>
     );
   }
