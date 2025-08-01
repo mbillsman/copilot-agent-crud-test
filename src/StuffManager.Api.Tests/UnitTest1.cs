@@ -12,6 +12,9 @@ public class StuffControllerTests : IClassFixture<TestWebApplicationFactory>
     {
         _factory = factory;
         _client = _factory.CreateClient();
+        
+        // Seed the database with test data
+        _factory.SeedDatabase();
     }
 
     [Fact]
